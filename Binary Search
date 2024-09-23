@@ -1,0 +1,67 @@
+## While Implementation:
+
+while(low <= high){
+    mid=(low+high)/2;
+    if(mid==target){
+        return mid;
+    }
+    else if(target<mid){
+        high=mid-1;
+    }
+    else{
+        low=mid+1;
+    }
+}
+
+## Recursion:
+
+fuction(arr,l,h,target){
+    m=(l+h)/2;
+    if(m=target) return m;
+    else if(target<m) return function(arr, l, m-1, target);
+    return function(arr, m+1, h, target);
+}
+
+--> mid=low + (high - low)/2 --> so it doesnt overflow
+
+## Lower Bound:
+
+int lowerBound(vector<int> arr, int n, int x) {
+    int low = 0, high = n - 1;
+    int ans = n;
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        // maybe an answer
+        if (arr[mid] >= x) {
+            ans = mid;
+            //look for smaller index on the left
+            high = mid - 1;
+        }
+        else {
+            low = mid + 1; // look on the right
+        }
+    }
+    return ans;
+}
+
+## Upper Bound:
+
+int upperBound(vector<int> &arr, int x, int n) {
+    int low = 0, high = n - 1;
+    int ans = n;
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        // maybe an answer
+        if (arr[mid] > x) {
+            ans = mid;
+            //look for smaller index on the left
+            high = mid - 1;
+        }
+        else {
+            low = mid + 1; // look on the right
+        }
+    }
+    return ans;
+}
